@@ -386,6 +386,7 @@ class AddHost4
         $dbutil->select($columns);
         $dbutil->from('dhcp4_options');
         $dbutil->where('host_id', $host_id);
+        $dbutil->where('scope_id', 3);
 
         /* return all data */
         $option_data = $dbutil->get();
@@ -468,7 +469,7 @@ class AddHost4
 
         /* define insert column */
         $lastid = $this->store->db->last_insertid();
-        $insert_data = ['host_id' => $lastid,
+        $insert_data = ['host_id' => $lastid, 'scope_id' => 3,
                         'code' => '', 'formatted_value' => ''];
 
         /* input value into array */

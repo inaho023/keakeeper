@@ -379,7 +379,7 @@ class BulkHost4
 
         /* define insert column */
         $lastid = $this->store->db->last_insertid();
-        $insert_data = ['host_id' => $lastid,
+        $insert_data = ['host_id' => $lastid, 'scope_id' => 3,
                         'code' => '', 'formatted_value' => ''];
 
         /* input value into array */
@@ -496,6 +496,7 @@ class BulkHost4
             $this->dbutil->from('dhcp4_options');
             /* make where statement of subnet_id */
             $this->dbutil->where('host_id', $host_id);
+            $this->dbutil->where('scope_id', 3);
             $this->dbutil->delete();
 
         } catch (Exception $e) {

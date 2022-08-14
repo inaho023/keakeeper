@@ -474,6 +474,7 @@ class EditHost4
         $dbutil->select($columns);
         $dbutil->from('dhcp4_options');
         $dbutil->where('host_id', $host_id);
+        $dbutil->where('scope_id', 3);
 
         /* return all data */
         $option_data = $dbutil->get();
@@ -517,6 +518,7 @@ class EditHost4
         $dbutil->select($columns);
         $dbutil->from('dhcp4_options');
         $dbutil->where('host_id', $host_id);
+        $dbutil->where('scope_id', 3);
 
         /* return all data */
         $option_data = $dbutil->get();
@@ -668,6 +670,7 @@ class EditHost4
         /* make where statement */
         $dbutil->where('host_id', $this->host_id);
         $dbutil->where('option_id', $option_id);
+        $dbutil->where('scope_id', 3);
         $dbutil->where('code', $code);
 
         /* make FROM statement */
@@ -718,6 +721,7 @@ class EditHost4
                     $where = ["host_id"=>$this->subnet_val['host_id'],
                               "code"=>$options[$col],
                               "option_id"=>$arr[$options[$col]],
+                              "scope_id"=>3,
                              ];
                     /* make where statement */
                     $dbutil->where($where);
@@ -736,6 +740,7 @@ class EditHost4
                 $insert_data['code'] = $options[$col];
                 $insert_data['formatted_value'] = $data;
                 $insert_data['host_id'] = $this->subnet_val['host_id'];
+                $insert_data['scope_id'] = 3;
 
                 try {
                     $dbutil->into($insert_data);
@@ -758,6 +763,7 @@ class EditHost4
                     $where = ["host_id"=>$this->subnet_val['host_id'],
                               "code"=>$options[$col],
                               "option_id"=>$arr[$options[$col]],
+                              "scope_id"=>3,
                              ];
                     $dbutil->where($where);
                     $update = [["formatted_value" => $data],
